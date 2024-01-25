@@ -1,0 +1,19 @@
+<div class="parent">
+    <div class="main">  	
+        <input type="checkbox" id="chk" checked aria-hidden="true">
+    
+            <div class="signup">
+            </div>
+    
+            <div class="login">
+                <form>
+                    <label aria-hidden="true">Login</label>
+                    <input type="password" name="Pin" [(ngModel)]="loginObj.Pin" placeholder="Password" required="" maxlength="4" autoComplete="off"
+                    mask="{{ tarjetaPinMask }}">
+                    <button (click)="onLogin()" *ngIf="loginObj.Pin.length == 4">Aceptar</button>
+                    <button (click)="onClear()">Limpiar</button>
+                    <button (click)="onSalir()">Salir</button>
+                </form>
+            </div>
+    </div>
+</div>

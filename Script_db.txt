@@ -1,0 +1,52 @@
+
+
+--1.- ========================== PRIMERO============
+CREATE DATABASE dbatp
+use dbatp
+
+GO
+
+CREATE TABLE Tarjeta(
+IdTarjeta int identity(1,1),
+NombreUsuario varchar(100) NOT NULL,
+NumeroTarjeta  varchar(20) NOT NULL,
+Pin varchar(4),
+Codigo varchar(3),
+EsActivo bit NOT NULL,
+FechaCreacion datetime,
+FechaExpiracion datetime,
+Disponible decimal(10,2),
+Balance decimal(10,2),
+Primary key(IdTarjeta)
+)
+insert into Tarjeta values('Juan Miranda','1111222233334444','1234','987',1,getdate(), getdate()+365,100000,2000)
+
+select * from Tarjeta
+
+--2.- ========================== SEGUNDO============
+CREATE TABLE Retiro(
+IdRetiro int identity(1,1) not null,
+IdTarjeta int not null,
+Retiro decimal(10,2),
+CodigoOperacion varchar(20),
+FechaExtraccion datetime,
+Primary key(IdRetiro),
+Foreign key(IdTarjeta) References Tarjeta(IdTarjeta)
+)
+insert into Retiro values(1,1000,'op01',getdate())
+insert into Retiro values(1,2000,'op02',getdate())
+
+select * from Retiro
+
+--3.- ========================== TERCERO============
+CREATE TABLE HistorialRefreshToken(
+IdHistorialToken int identity(1,1) primary key,
+IdTarjeta int references Tarjeta(IdTarjeta),
+Token varchar(500),
+RefreshToken varchar(200),
+FechaCreacion datetime,
+FechaExpiracion datetime,
+EsActivo as (iif(FechaExpiracion < getdate(), convert(bit,0), convert(bit,1)))	--columna calculada
+)
+
+select * from HistorialRefreshToken

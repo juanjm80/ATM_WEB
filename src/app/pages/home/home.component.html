@@ -1,0 +1,19 @@
+<div class="parent">
+    <div class="main">  	
+        <input type="checkbox" id="chk" checked aria-hidden="true">
+    
+            <div class="signup">
+            </div>
+    
+            <div class="login">
+                <form>
+                    <label aria-hidden="true">Home</label>
+                    <input type="text" name="NumeroTarjeta" [(ngModel)]="loginObj.NumeroTarjeta" placeholder="Numero Tarjeta" required="" maxlength="19"
+                        autoComplete="off"          
+                        mask="{{ tarjetaMask }}">
+                    <button (click)="onHome()" *ngIf="loginObj.NumeroTarjeta.length == 16">Aceptar</button>
+                    <button (click)="onClear()">Limpiar</button>
+                </form>
+            </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+
+<form>
+    <button (click)="onBalance()">Balance</button>
+    <button (click)="onRetiro()">Retiro</button>
+</form>´
+<div *ngIf="isBalance" class="container-fluid bg-success text-white" style="padding:100px 20px;">
+    <h1>Balance</h1>
+    <span>
+        <div class="mb-3 mt-3">
+            <label class="form-label">Numero Tarjeta:</label>
+             <span> {{NumeroTarjeta}}</span>              
+        </div>
+        <div class="mb-3 mt-3">
+            <label class="form-label">Fecha de Vencimiento:</label>
+             <span> {{FechaExpiracion  | date: 'MM/dd/yyyy'}}</span>              
+        </div>
+        <div class="mb-3 mt-3">
+            <label class="form-label">Disponible:</label>
+             <span> $ {{Disponible}}</span>              
+        </div>
+    </span>
+</div>
+
+<div *ngIf="isRetiro" class="container-fluid bg-success text-white" style="padding:100px 20px;">
+    <h1>Retiro</h1>
+    <span>
+        <div class="mb-3 mt-3">
+            <label class="form-label">Cantidad a Retirar:</label>
+            <span matPrefix>&nbsp;$ &nbsp;</span>
+            <input matInput
+                [(ngModel)]="obj.Retiro" placeholder="Monto" required="" maxlength="7" autoComplete="off"
+                mask="{{ retiroMask }}">            
+        </div>
+        <div class="mb-3 mt-3">
+            <button (click)="onExtraer()">Aceptar</button>
+            <button (click)="onClear()">Limpiar</button>              
+        </div>
+    </span>
+</div>
+
+<router-outlet></router-outlet>

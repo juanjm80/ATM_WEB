@@ -1,3 +1,7 @@
+# Tener en cuenta para levantar el proyecto
+Script_db.txt
+Descripcion.docx
+
 # ATMWEB
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.10.
